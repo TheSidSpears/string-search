@@ -1,0 +1,16 @@
+{
+    "name": "sidspears/string-search",
+    "description": "Find substring in file",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artur",
+            "email": "thesidspears@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": ["src"]
+    }
+}
