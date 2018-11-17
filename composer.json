@@ -9,7 +9,14 @@
             "email": "thesidspears@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.0.3",
+        "symfony/yaml": "^4.1",
+        "ext-mbstring": "*",
+        "ext-fileinfo": "*",
+        "hoa/mime": "~3.0",
+        "hoa/file": "1.17.07.11"
+    },
     "autoload": {
         "classmap": ["src"]
     }

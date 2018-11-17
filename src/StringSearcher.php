@@ -1,20 +1,37 @@
 <?php
 
+namespace SidSpears\StringSearcher;
 
 class StringSearcher
 {
-    public function findStingAndPosition(string $filePath, string $needle): ?array
-    {
-        $file = file($filePath);
+    protected $fileValidator;
 
-        foreach ($file as $stringNum => $string) {
-            if ($foundedPosition = mb_strpos($string, $needle)) {
-                return [
-                    'string' => ++$stringNum,
-                    'position' => $foundedPosition
-                ];
+    public function __construct(string $userConfigPath = null)
+    {
+        $this->fileValidator = new FileValidator($userConfigPath);
+    }
+
+    public function findStringAndPosition(string $filePath, string $needle): ?array
+    {
+        if ($this->fileValidator->isValid($filePath)) {
+            $handle = fopen($filePath, 'r');
+            $stringNum = 1;
+
+            while (($buffer = fgets($handle)) !== false) {
+                if ($foundedPosition = mb_strpos($buffer, $needle)) {
+                    $result = [
+                        'string' => $stringNum,
+                        'position' => $foundedPosition
+                    ];
+                    break;
+                }
+
+                $stringNum++;
             }
+        } else {
+            $result = $this->fileValidator->getErrorMessages();
         }
-        return null;
+
+        return $result ?? null;
     }
 }
