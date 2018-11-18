@@ -29,7 +29,7 @@ class StringSearcher
                 $stringNum++;
             }
         } else {
-            $result = $this->fileValidator->getErrorMessages();
+            $result = ['errors' => $this->fileValidator->getErrorMessages()];
         }
 
         return $result ?? null;
